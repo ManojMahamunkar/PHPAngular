@@ -1,0 +1,36 @@
+
+
+<table class="table table-striped" ng-init="getUser()">
+  <thead>
+	<tr style="background-color:#FFFFEB">
+    <th>Id</th>
+    <th>Name</th>
+    <th>Designation</th>
+	<th>Date Of Joining</th>
+	<th colspan="2">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="x in data | filter:searchdata | orderBy:'id'">
+    <td>{{ x.id }}</td>
+    <td>{{ x.name }}</td>
+    <td>{{ x.desig }}</td>
+	<td>{{ x.doj }}</td>
+	<td colspan="2">
+	
+	  <button class="btn"   data-toggle="modal" data-target="#myModal" ng-click="ViewUser(x.id)">
+        <span style="color:blue" class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+      </button>
+
+
+	
+	  <button class="btn"   ng-click="DeleteUser(x.id)">
+        <span style="color:red" class="glyphicon glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+      </button>
+
+    </td>
+  </tr>
+  </tbody>
+  
+  
+</table>

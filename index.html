@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src= "/Angular/angular.min.js"></script>
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+</head>
+
+<body ng-app="myApp" ng-controller="userCtrl">
+
+<div class="container" >
+		<h3>Users</h3>
+			<button class="btn btn-success" data-toggle="modal" data-target="#myModal2"  ng-click="NewUser()">
+			  <span class="glyphicon glyphicon-user"></span> Create New User
+			</button>
+					<hr>
+					<table class="table table-striped">
+						<tr>
+							<td>
+								<span  class="glyphicon  glyphicon-search"></span>&nbsp;&nbsp;
+								<input type="text" placeholder="Search" ng-model="searchdata" style="border:none;"  />
+							</td>
+						<tr>	
+					</table>
+					<hr>
+	  <div ng-include="'NewInc.html'"></div>
+</div>
+
+<script src= "controller.js"></script>
+
+<!-- POP Up for EDIT -->
+
+<div class="Newcontainer">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Form</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal" name="editForm" novalidate role="form">
+					<input type="hidden"  ng-model="id" placeholder="Id" >
+					
+					
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"> Name:</label>
+				  <div class="col-sm-10">
+					
+					<input type="text"  name="user_name" ng-model="user_name"  placeholder="Name" >
+					<span style="color:red" ng-show="editForm.user_name.$dirty && editForm.user_name.$invalid">
+					<span ng-show="editForm.user_name.$error.required">Name is required.</span>
+					</span>
+				  </div>
+				</div> 
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Designation:</label>
+				  <div class="col-sm-10">
+					<input type="text"    name="desig" ng-model="desig"   placeholder="Designation" >
+					<span style="color:red" ng-show="editForm.desig.$dirty && editForm.desig.$invalid">
+							<span ng-show="editForm.desig.$error.required">Designation is required.</span>
+					</span>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Date Of Joining:</label>
+				  <div class="col-sm-10">
+					<input type="text"  ng-model="doj" name="doj" placeholder="Date Of Joining" >
+					<span style="color:red" ng-show="editForm.doj.$dirty && editForm.doj.$invalid">
+							<span ng-show="editForm.doj.$error.required">Date Of Joining is required.</span>
+					</span>
+				  </div>
+				</div>
+				
+			</form>
+
+					<hr>
+				<button class="btn btn-success" ng-show='update_user' ng-click="UpdateUser()" ng-disabled="!editForm.$valid">
+				  <span class="glyphicon glyphicon-save"></span> Save
+				</button>
+				
+				
+				
+        </div>
+        <div class="modal-footer">
+		<!--
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		-->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<!-- END POP Up for EDIT -->
+
+
+<!-- POP Up for NEW USER -->
+
+<div class="NewUsercontainer">
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">User Form</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal" name="myForm" novalidate role="form">
+					<input type="hidden"  ng-model="id" placeholder="Id" >
+					
+					
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"> Name:</label>
+				  <div class="col-sm-10">
+					
+					<input type="text"  name="create_user_name" ng-model="create_user_name"  placeholder="Name" required>
+					<span style="color:red" ng-show="myForm.create_user_name.$dirty && myForm.create_user_name.$invalid">
+							<span ng-show="myForm.create_user_name.$error.required">Name is required.</span>
+					</span>
+				  </div>
+				</div> 
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Designation:</label>
+				  <div class="col-sm-10">
+					<input type="text"    name="create_desig" ng-model="create_desig"   placeholder="Designation"  required>
+					<span style="color:red" ng-show="myForm.create_desig.$dirty && myForm.create_desig.$invalid">
+							<span ng-show="myForm.create_desig.$error.required">Designation is required.</span>
+					</span>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Date Of Joining:</label>
+				  <div class="col-sm-10">
+					<input type="text"  ng-model="create_doj" name="create_doj" placeholder="Date Of Joining" required>
+					<span style="color:red" ng-show="myForm.create_doj.$dirty && myForm.create_doj.$invalid">
+							<span ng-show="myForm.create_doj.$error.required">Date Of Joining is required.</span>
+					</span>
+				  </div>
+				</div>
+				
+			</form>
+
+					<hr>
+				
+				
+
+				<button class="btn btn-success"  ng-show='add_user'  ng-click="CreateUser()" ng-disabled="!myForm.$valid">
+				  <span class="glyphicon glyphicon-save"></span> Save
+				</button>
+				
+        </div>
+        <div class="modal-footer">
+		<!--
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		-->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<!-- END POP Up for NEW USER -->
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script src= "/Angular/angular.min.js"></script>
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<body>
+	
+<h3>Users</h3>
+<table class="table table-striped">
+  <thead><tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Designation</th>
+	<th>Date Of Joining</th>
+	<th>Action</th>
+  </tr></thead>
+  <tbody>
+  <tr ng-repeat="user in users">
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.desig }}</td>
+	<td>{{ user.doj }}</td>
+	<td>
+      <button class="btn" ng-click="editUser(user.id)">
+        <span class="glyphicon glyphicon-pencil"></span>Edit
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
